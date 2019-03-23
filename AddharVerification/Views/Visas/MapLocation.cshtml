@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewData["Title"] = "MapLocation";
+}
+<script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-firestore.js"></script>
+<h2>MapLocation</h2>
+
+<a href="http://maps.google.com/?ll=38.882147,-76.99017">View Location</a>
+<button onclick="openloc()">Open Location</button>
+<p id="lat">
+   
+</p>
+<p id="long">
+
+</p>
+<script type="text/javascript">
+
+    var config = {
+        apiKey: "AIzaSyBT8KIRY8rjngVPyqJLYeuuiz1wri9UfJ0",
+        authDomain: "passport-1553192828383.firebaseapp.com",
+        databaseURL: "https://passport-1553192828383.firebaseio.com",
+        projectId: "passport-1553192828383",
+        storageBucket: "passport-1553192828383.appspot.com",
+        messagingSenderId: "170345932576"
+    };
+    firebase.initializeApp(config);
+
+    const db = firebase.firestore();
+    db.setting({ timestampsInSnapshots: true })
+
+    var latcor = document.getElementById("lat");
+    latcor.innerText = lat;
+</script>
+<script src="~/js/app.js"></script>

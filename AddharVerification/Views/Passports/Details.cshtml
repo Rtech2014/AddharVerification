@@ -1,0 +1,107 @@
+﻿@model AddharVerification.Models.Passport
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div>
+    <h4>Passport Details</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MobileNum)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MobileNum)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PlaceOfBirth)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PlaceOfBirth)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DOB)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DOB)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Gender)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Gender)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CivilStatus)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CivilStatus)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Occupation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Occupation)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NameOfMother)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NameOfMother)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NameOfFather)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NameOfFather)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Citizenship)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Citizenship)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Photo)
+        </dt>
+        <dd>
+            @{
+                string imreBase64Data = Convert.ToBase64String(Model.Photo);
+                string imgDataURL = string.Format("data:image/png;base64,{0}", imreBase64Data);
+            }
+            <img class="activator img-fluid" src="@imgDataURL" width="200px" />
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AppUser)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AppUser.Id)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a> |
+    @if (User.IsInRole("Admin"))
+    {
+        <a asp-action="PassportApprove" asp-controller="Passports" asp-route-id="@Model.Id">Aprove This User</a>
+    }
+</div>

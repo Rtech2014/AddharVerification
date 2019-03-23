@@ -1,0 +1,158 @@
+﻿@model IEnumerable<AddharVerification.Models.Passport>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<div class="col-lg-3 col-md-6 col-sm-6">
+    @foreach (var item in Model)
+    {
+        <div class="card card-stats">
+            <div class="card-header card-header-warning card-header-icon">
+                <div class="card-icon">
+                    <i class="material-icons">content_copy</i>
+                </div>
+                <br /><br /><br />
+                <p class="card-category"><strong>@item.FName</strong></p>
+                <h3 class="card-title">
+                    @{
+                        string imreBase64Data = Convert.ToBase64String(item.Photo);
+                        string imgDataURL = string.Format("data:image/png;base64,{0}", imreBase64Data);
+                    }
+                    <img class="activator img-fluid" src="@imgDataURL" width="200px" />
+                    <small><a asp-action="Details" asp-route-id="@item.Id" class="text-dark">View Detail</a></small>
+                </h3>
+            </div>
+        </div>
+    }
+</div>
+@if (User.IsInRole("Admin"))
+{
+    <form asp-action="Index" asp-controller="Blocks" method="post">
+        <div class="form-group">
+            <label for="studentid">Enter the Aadhar ID to view users</label>
+            <input type="text" class="form-control" name="searchData" id="studentid">
+        </div>
+        <button type="submit" class="btn btn-primary">Search Citizens</button>
+    </form>
+}
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MobileNum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PlaceOfBirth)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ExpiryDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DOB)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CivilStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Occupation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NameOfMother)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NameOfFather)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Citizenship)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Photo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AppUser)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MobileNum)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PlaceOfBirth)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ExpiryDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DOB)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gender)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CivilStatus)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Occupation)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NameOfMother)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NameOfFather)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Citizenship)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Photo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AppUser.Id)
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+
+
+                    }
+
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

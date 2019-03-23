@@ -1,0 +1,87 @@
+﻿@model IEnumerable<AddharVerification.Models.Visa>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-firestore.js"></script>
+<p>
+
+    @{
+        var userid = User.getUserId();
+        foreach (var item in Model)
+        {
+            if (item.ApplicationMemberId == userid)
+            {
+
+            }
+            else
+            {
+                <a asp-action="Create">Apply new passport</a>
+            }
+        }
+    }
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Current)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Destination)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AppUser)
+            </th>
+            <th>
+                Location
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Current)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Destination)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AppUser.Id)
+                </td>
+                <td>
+                    <button onclick="openloc()">Open Location</button>
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script type="text/javascript">
+
+    var config = {
+        apiKey: "AIzaSyBT8KIRY8rjngVPyqJLYeuuiz1wri9UfJ0",
+        authDomain: "passport-1553192828383.firebaseapp.com",
+        databaseURL: "https://passport-1553192828383.firebaseio.com",
+        projectId: "passport-1553192828383",
+        storageBucket: "passport-1553192828383.appspot.com",
+        messagingSenderId: "170345932576"
+    };
+    firebase.initializeApp(config);
+
+    const db = firebase.firestore();
+    db.setting({ timestampsInSnapshots: true })
+
+    var latcor = document.getElementById("lat");
+    latcor.innerText = lat;
+</script>
+<script src="~/js/app.js"></script>
