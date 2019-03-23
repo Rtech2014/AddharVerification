@@ -9,9 +9,11 @@ using AddharVerification.Data;
 using AddharVerification.Models;
 using Microsoft.AspNetCore.Http;
 using System.IO;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AddharVerification.Controllers
 {
+    [Authorize]
     public class PassportsController : Controller
     {
         private readonly ApplicationDbContext _context;

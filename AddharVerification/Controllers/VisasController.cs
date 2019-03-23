@@ -5,9 +5,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AddharVerification.Data;
 using AddharVerification.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AddharVerification.Controllers
 {
+    [Authorize]
     public class VisasController : Controller
     {
         private readonly ApplicationDbContext _context;
