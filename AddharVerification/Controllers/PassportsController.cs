@@ -24,17 +24,12 @@ namespace AddharVerification.Controllers
         }
 
         // GET: Passports
-        public async Task<IActionResult> Index(string searchData)
+        public async Task<IActionResult> Index()
         {
-            //if (searchData.ToString() == null)
-            //{
-            //    return View(await _context.Passport.ToListAsync());
-            //}
-            //else
-            //{
-                var sdata = _context.Passport.Where(s => s.Aadhar.Contains(searchData));
-                return View(sdata);
-            //}
+
+                return View(await _context.Passport.ToListAsync());
+
+
         }
 
         // GET: Passports/Details/5
